@@ -12,7 +12,27 @@ public class EmployeeBook {
             throw new EmployeeExistException();
         }
         employees.add(employee);
-        return (employee);
+        return employee;
+    }
+
+    public Employee removeEmployee(Employee employee) {
+        if (employees.contains(employee)) {
+            employees.remove(employee);
+            return employee;
+        } else
+            throw new EmployeeNoExistException();
+    }
+    public Employee findEmployee(Employee employee) {
+        if (employees.contains(employee)) {
+            return employee;
+        } else
+            throw new EmployeeNoExistException();
+    }
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+    public int sizeEmployees() {
+        return employees.size();
     }
 }
 
