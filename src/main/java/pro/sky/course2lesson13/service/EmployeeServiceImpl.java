@@ -1,8 +1,11 @@
 package pro.sky.course2lesson13.service;
 
+import org.apache.commons.lang3.StringUtils;
+
 import org.springframework.stereotype.Service;
 import pro.sky.course2lesson13.Employee;
 import pro.sky.course2lesson13.EmployeeBook;
+import pro.sky.course2lesson13.InvalidInputData;
 
 import java.util.Comparator;
 import java.util.List;
@@ -12,18 +15,13 @@ import java.util.stream.Collectors;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private EmployeeBook employeeBook;
+    private EmployeeBook employeeBook = new EmployeeBook();
 
     @Override
     public String addEmployeeToBook(String firstName, String lastName, int department, double salary) {
-//        firstName = checkingInputTextData(firstName);
-//        lastName = checkingInputTextData(lastName);
+        firstName = checkingInputTextData(firstName);
+        lastName = checkingInputTextData(lastName);
         Employee employee = new Employee(firstName, lastName, department, salary);
-//        employeeBook.addEmployee(employee);
-//        if (employee.contains(employee1)) {
-//            throw new DataMatchException();
-//        }
-//        employee.add(employee1);
         return (employeeBook.addEmployee(employee).toString());
     }
     @Override
@@ -37,24 +35,17 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
     @Override
     public String removeEmployeeFromBook(String firstName, String lastName, int department, double salary) {
-//        firstName = checkingInputTextData(firstName);
-//        lastName = checkingInputTextData(lastName);
+        firstName = checkingInputTextData(firstName);
+        lastName = checkingInputTextData(lastName);
         Employee employee = new Employee(firstName, lastName, department, salary);
-//        if (employee.contains(employee1)) {
-//            employee.remove(employee1);
-            return (employeeBook.removeEmployee(employee).toString());
-//        } else
-//            throw new NotFoundException();
+        return (employeeBook.removeEmployee(employee).toString());
     }
     @Override
     public Employee findEmployeeInBook(String firstName, String lastName, int department, double salary) {
-//        firstName = checkingInputTextData(firstName);
-//        lastName = checkingInputTextData(lastName);
+        firstName = checkingInputTextData(firstName);
+        lastName = checkingInputTextData(lastName);
         Employee employee = new Employee(firstName, lastName, department, salary);
-//        if (employee.contains(employee1)) {
-            return employeeBook.findEmployee(employee);
-//        }
-//        throw new NotFoundException();
+        return employeeBook.findEmployee(employee);
     }
     @Override
     public Employee searchEmployeeDepartmentMaxSalary(int department) {
@@ -81,5 +72,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         Map<Integer, List<Employee>> map = employeeBook.getEmployees().stream()
                 .collect(Collectors.groupingBy(Employee::getDepartment));
         return map;
+    }
+    //Проверка вводимого текста (наличие только букв) и установка заглавной первой буквы
+    @Override
+    public String checkingInputTextData(String text) {
+        if (!StringUtils.isAlpha(text)) {
+            throw new InvalidInputData();
+        } else text = StringUtils.capitalize(text);
+        return text;
     }
 }

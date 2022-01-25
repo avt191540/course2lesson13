@@ -20,13 +20,13 @@ public class EmployeeBook {
             employees.remove(employee);
             return employee;
         } else
-            throw new EmployeeNoExistException();
+            throw new EmployeeNotExistException();
     }
     public Employee findEmployee(Employee employee) {
         if (employees.contains(employee)) {
             return employee;
         } else
-            throw new EmployeeNoExistException();
+            throw new EmployeeNotExistException();
     }
     public List<Employee> getEmployees() {
         return employees;
