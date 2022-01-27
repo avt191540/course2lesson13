@@ -23,8 +23,6 @@ public interface EmployeeService {
 
     List getAllEmployeesOfDepartment(int department);
 
-//    List getEmployeesByDepartments();
-
     Map getEmployeesByDepartments();
 
     String checkingInputTextData(String text);

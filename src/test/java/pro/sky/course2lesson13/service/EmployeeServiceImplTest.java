@@ -133,7 +133,36 @@ public class EmployeeServiceImplTest {
                         DEPARTMENT_NOT_EXISTS, SALARY_NOT_EXISTS));
         verify(employeeBookMock, times(1)).removeEmployee(EMPLOYEE_WHO_IS_NOT_EXIST);
     }
-
-
-
+    @Test
+    public void shouldCallEmployeeBookMethodWhenFindOutSizeOfEmployeeBook() {
+        when(employeeBookMock.sizeEmployees()).thenReturn(NUMBER_OF_EMPLOYEES_IN_BOOK);
+        Assertions.assertEquals(NUMBER_OF_EMPLOYEES_IN_BOOK, out.sizeEmployeeBook());
+        verify(employeeBookMock, times(1)).sizeEmployees();
+    }
+    @Test
+    public void shouldCallEmployeeBookMethodWhenGetAiiEmployeesFromEmployeeBook() {
+        when(employeeBookMock.getEmployees()).thenReturn(TEST_LIST);
+        Assertions.assertEquals(TEST_LIST, out.getEmployeeBook());
+        verify(employeeBookMock, times(1)).getEmployees();
+    }
+    @Test
+    public void shouldCallEmployeeBookMethodWhenSearchEmployeeOfDepartmentWithMaxSalary() {
+        when(employeeBookMock.getEmployees()).thenReturn(TEST_LIST_FOR_METHODS_WITH_DEPARTMENTS);
+        Assertions.assertEquals(EMPLOYEE_WITH_MAX_SALARY,
+                out.searchEmployeeDepartmentMaxSalary(DEPARTMENT_FOR_METHODS_WITH_DEPARTMENTS));
+        verify(employeeBookMock, times(1)).getEmployees();
+    }
+    @Test
+    public void shouldCallEmployeeBookMethodWhenSearchEmployeeOfDepartmentWithMinSalary() {
+        when(employeeBookMock.getEmployees()).thenReturn(TEST_LIST_FOR_METHODS_WITH_DEPARTMENTS);
+        Assertions.assertEquals(EMPLOYEE_WITH_MIN_SALARY,
+                out.searchEmployeeDepartmentMinSalary(DEPARTMENT_FOR_METHODS_WITH_DEPARTMENTS));
+        verify(employeeBookMock, times(1)).getEmployees();
+    }
+    @Test
+    public void shouldCallEmployeeBookMethodWhenGetEmployeesByDepartments() {
+        when(employeeBookMock.getEmployees()).thenReturn(TEST_LIST_FOR_METHODS_WITH_DEPARTMENTS);
+        Assertions.assertEquals(MAP_TEST, out.getEmployeesByDepartments());
+        verify(employeeBookMock, times(1)).getEmployees();
+    }
 }

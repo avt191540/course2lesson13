@@ -2,6 +2,12 @@ package pro.sky.course2lesson13.constants;
 
 import pro.sky.course2lesson13.Employee;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 public class EmployeeBookConstants {
     public static final Employee EMPLOYEE_WHO_IS_NOT_EXIST =
             new Employee("Vladimir", "Shatrov", 2, 30000);
@@ -28,4 +34,16 @@ public class EmployeeBookConstants {
     public static final Employee EMPLOYEE_WHO_IS_FOUND_OR_REMOVE_IN_BOOK =
             new Employee("Ivan", "Ivanov", 2, 20000);
     public static final int NUMBER_OF_EMPLOYEES_IN_BOOK = 6;
+    public static final List<Employee> TEST_LIST = new ArrayList<Employee>
+            (Arrays.asList(EMPLOYEE_WHO_IS_NOT_EXIST, EMPLOYEE_WHO_IS_ALREADY_EXIST));
+    public static final Employee EMPLOYEE_WITH_MAX_SALARY =
+            new Employee("Ivan", "Ivanov", 2, 90000);
+    public static final Employee EMPLOYEE_WITH_MIN_SALARY =
+            new Employee("Ivan", "Ivanov", 2, 20000);
+    public static final List<Employee> TEST_LIST_FOR_METHODS_WITH_DEPARTMENTS = new ArrayList<Employee>
+            (Arrays.asList(EMPLOYEE_WITH_MAX_SALARY, EMPLOYEE_WITH_MIN_SALARY));
+    public static final int DEPARTMENT_FOR_METHODS_WITH_DEPARTMENTS = 2;
+    public static final Map<Integer, List<Employee>> MAP_TEST = TEST_LIST_FOR_METHODS_WITH_DEPARTMENTS.stream()
+            .collect(Collectors.groupingBy(Employee::getDepartment));
+
 }

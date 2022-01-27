@@ -59,10 +59,6 @@ public class EmployeeController {
     public List allEmployeesOfDepartment(@RequestParam int department) {
         return (employeeService.getAllEmployeesOfDepartment(department));
     }
-//    @GetMapping("/departments/all-departments")
-//    public List employeesByDepartments() {
-//        return (employeeService.getEmployeesByDepartments());
-//    }
     @GetMapping("/departments/all-departments")
     public Map employeesByDepartments() {
         return (employeeService.getEmployeesByDepartments());

@@ -26,7 +26,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
     @Override
     public int sizeEmployeeBook() {
-//        int numberEmployees = employee.size();
         return employeeBook.sizeEmployees();
     }
     @Override
